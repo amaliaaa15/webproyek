@@ -36,7 +36,7 @@
                                 <div class="card-body">
                                 <p class="">
                                      Hallo! Selamat datang! <br> <br>
-                                     Anda berada di Area Admin untuk mengelola website Prebens. Gunakan menu yang berada disamping unutk mengelola website. Hubungi pihak Admin jika ada beberapa yang kurang dimengerti.
+                                     Anda berada di Area Admin untuk mengelola website HaulHallyu. Gunakan menu yang berada disamping unutk mengelola website. Hubungi pihak Admin jika ada beberapa yang kurang dimengerti.
                                 </p>
                             </div>
                             </div>
@@ -44,7 +44,7 @@
                     </div>
                 </main>
                 <?php require "footer.php"; ?>
-            </div>
+            </div>a
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
@@ -53,5 +53,32 @@
         <script src="assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
+
+                <!-- ::::::::::::::All JS Files here :::::::::::::: -->
+        <!-- Global Vendor -->
+        <script src="assets/js/vendor/modernizr-3.11.2.min.js"></script>
+        <script src="assets/js/vendor/jquery-3.6.0.min.js"></script>
+        <script src="assets/js/vendor/jquery-migrate-3.3.2.min.js"></script>
+        <script src="assets/js/vendor/bootstrap.bundle.min.js"></script>
+        <script src="assets/js/vendor/jquery-ui.min.js"></script>
+
+        <!--Plugins JS-->
+        <script src="assets/js/plugins/jquery.nice-select.js"></script>
+        <script src="assets/js/plugins/swiper-bundle.min.js"></script>
+        <script src="assets/js/plugins/ion.rangeSlider.min.js"></script>
+        <script src="assets/js/plugins/venobox.min.js"></script>
+        <script src="assets/js/plugins/ajax-mail.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('#open').click(function(){
+                    $('.model-container').css('transform', 'scale(1)');
+                });
+                
+                $('#close').click(function(){
+                        $('.model-container').css('transform', 'scale(0)');
+                    });
+            });
+        </script>
     </body>
 </html>

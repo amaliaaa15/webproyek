@@ -59,7 +59,7 @@ if( isset($_POST["edit"]) ){
                                     <div class="col">
                                         <div class="form-group">
                                             <label for="">Nama Kategori</label>
-                                            <input type="text" name="kategori" class="form-control" required value="<?= $kategori["k_name"]?>">
+                                            <input type="text" name="kategori" class="form-control" required value="<?= $kategori["nama_kat"]?>">
                                         </div>
                                     </div>
                                 </div>
