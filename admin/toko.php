@@ -1,6 +1,6 @@
 <?php  
 require 'fungsi.php';
-$transaksi = query("SELECT * FROM transaksi");
+$user = query("SELECT * FROM seller");
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +14,7 @@ $transaksi = query("SELECT * FROM transaksi");
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Pesanan Pending</title>
+        <title>Pengguna Prebens</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
@@ -26,10 +26,9 @@ $transaksi = query("SELECT * FROM transaksi");
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Pesanan Pending</h1>
+                        <h1 class="mt-4">Toko</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item">Transaksi</li>
-                            <li class="breadcrumb-item active">Pesanan Pending</li>
+                            <li class="breadcrumb-item active"><i class="fas fa-store-alt"></i> Toko</li>
                         </ol>
                         <div class="card">
                             <div class="card-body">
@@ -38,42 +37,24 @@ $transaksi = query("SELECT * FROM transaksi");
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <th>ID Transaksi</th>
-                                                <th>Jenis Transaksi</th>
                                                 <th>Username</th>
-                                                <th>Tanggal Transaksi</th>
-                                                <th>Status</th>
-                                                <th>Total Transaksi</th>
-                                                <th>Aksi</th>
+                                                <th>Email</th>
+                                                <th>Nama Toko</th>
+                                                <th>No HP</th>
+                                                <th>Alamat</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                         <?php $no = 1; ?>
                                         <?php
-                                        foreach( $transaksi as $row): ?>
+                                        foreach( $user as $row): ?>
                                             <tr>
                                                 <td><?= $no; ?></td>
-                                                <td><a href="buktitf.php?id=<?= $row["id_transaksi"]; ?>">#<?= $row["id_transaksi"]; ?></a></td>
-                                                <td><?= $row["jenis_trans"]; ?></td>
-                                                <?php 
-
-                                                    $idpel = $row['id_pelanggan'];
-
-                                                    $pelanggan = "SELECT  * FROM pelanggan WHERE id_pelanggan='$idpel'";
-                                                    $result = mysqli_query($conn,$pelanggan);
-                                                    $baris = mysqli_fetch_array($result);
-                                                    $username = $baris['u_username']; 
-                                                ?> 
-                                                <td><a href="detailuser.php?username=<?php echo $username;?>">
-                                                <?php echo $username;?></a></td>
-                                                <td><?= $row["tgl_transaksi"]; ?></td>
-                                                <td><i><?= $row["status_trans"]; ?></i></td>
-                                                <td>Rp. <?php echo number_format($row["total_trans"],2,",",".");?></td>
-                                                <td>
-                                                    <a href="batalkan.php?id=<?= $row["id_transaksi"]; ?>"onclick= "return confirm('yakin?');"   class="btn btn-danger"><i class="fa fa-times" aria-hidden="true"></i></a>
-                                                    <a href="confirm.php?id=<?= $row["id_transaksi"]; ?>"onclick= "return confirm('yakin?');"   class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i></a>
-                                                </td>
-                                                
+                                                <td><a href="detailuser.php?username=<?= $row["s_username"]; ?>"><?= $row["s_username"]; ?></td>
+                                                <td><?= $row["s_email"]; ?></td>
+                                                <td><?= $row["s_nama"]; ?></td>
+                                                <td><?= $row["s_nohp"]; ?></td>
+                                                <td><?= $row["s_alamat"]; ?></td>
                                             </tr>
                                             <?php $no++; ?>
                                             <?php endforeach; ?>

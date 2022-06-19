@@ -52,9 +52,9 @@ $produk = query("SELECT * FROM produk");
                                         foreach( $produk as $row): ?>
                                             <tr>
                                                 <td><?= $no; ?></td>
-                                                <td><a href="detailproduk.php?id_produk=<?= $row["id_produk"]?>">#<?= $row["id_produk"]; ?></td>
-                                                <td><a href="detailuser.php?username=<?php echo $username;?>">
-                                                <?php echo $username;?></a></td>
+                                                <td><a href="detailproduk.php?id_produk=<?= $row["id_produk"];?>">#<?= $row["id_produk"]; ?></td>
+                                                <td><a href="detailuser.php?username=<?php echo $row["s_username"];?>">
+                                                <?php echo $row["s_username"];?></a></td>
                                                 <td><?= $row["nama_produk"]; ?></td>
                                                 <td>
                                                     <?php 
@@ -64,7 +64,7 @@ $produk = query("SELECT * FROM produk");
                                                     $kategori = "SELECT  * FROM kategori WHERE id_kategori='$idkat'";
                                                     $result = mysqli_query($conn,$kategori);
                                                     $baris = mysqli_fetch_array($result);
-                                                    $namakat = $baris['k_name']; 
+                                                    $namakat = $baris['nama_kat']; 
 
                                                     echo $namakat; ?>        
                                                 </td>

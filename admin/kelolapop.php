@@ -23,7 +23,7 @@ $kategori = query("SELECT * FROM kategori WHERE k_flag=1");
             *{
                 margin: 0; padding: 0;
                 box-sizing: border-box;
-                font-family: var(--bs-body-font-family);
+                font-family: tahoma;
                 transition: all .2s linear;
                 text-transform: capitalize;
             }
@@ -34,6 +34,9 @@ $kategori = query("SELECT * FROM kategori WHERE k_flag=1");
                 justify-content: center;
                 min-height: 100vh;
                 width: 100vw;
+                background: url();
+                background-size: cover;
+                background-position: center;
             }
 
 
@@ -45,9 +48,8 @@ $kategori = query("SELECT * FROM kategori WHERE k_flag=1");
                 width: 100vw;
                 position: fixed;
                 top: 0; left: 0;
+                background: rgba(0, 0, 0, 3);
                 transform: scale(0);
-                background-color: rgba(0,0,0,0.4);
-                opacity: 0.5;
             }
 
             .model-container .model{
@@ -82,7 +84,7 @@ $kategori = query("SELECT * FROM kategori WHERE k_flag=1");
                 font-size: 15px;
             }
 
-            .model-container .model a button{
+            .model-container .model .a button{
                 height: 28px;
                 width: 85px;
                 background: #333;
@@ -90,12 +92,12 @@ $kategori = query("SELECT * FROM kategori WHERE k_flag=1");
                 outline: none;
                 border: none;
                 border-radius: 53px;
-                font-size: 15px;
+                font-size: 10px;
                 cursor: pointer;
                 box-shadow: 0 5px 15px rgba(0, 0, 0, .3);
             }
 
-            .model-container .model a button:hover{
+            .model-container .model .a button:hover{
                 opacity: .8;
             }
 
@@ -153,34 +155,29 @@ $kategori = query("SELECT * FROM kategori WHERE k_flag=1");
                                                 $result = mysqli_query($conn, $sql);
                                                 $baris = mysqli_fetch_array($result);
                                                 echo $baris['jumlahprod'];
-
-                                                $id_kat = $row['id_kategori'];?>
-                            
+                                                ?>
                                                     
                                                 </td>
                                                 <td>
-
-                                                    <a href="updatekat.php?id_kat=<?= $id_kat;?>" class="btn btn-warning"><i class="fa fa-pen" aria-hidden="true"></i></a>
+                                                    <a href="updatekat.php?id_kat=<?= $row['id_kategori'];?>" class="btn btn-warning"><i class="fa fa-pen" aria-hidden="true"></i></a>
                                                     <a id="open" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                                                    <div class="model-container">
-                                                        <div class="model">
-                                                            <i class="fas fa-trash"></i>
-                                                            <h3>Hapus Kategori ?</h3>
-                                                            <p>Dengan menghapus kategori ini maka seluruh produk dengan kategori ini akan "-". Anda bisa pilih Edit jika ingin mengedit Kategori.</p>
-                                                            <div>
-                                                                <a href="hapuskat.php?id_kat=<?=$id_kat;?>">
+                                                        <div class="model-container">
+                                                            <div class="model">
+                                                                <i class="fas fa-trash"></i>
+                                                                <h3>Hapus Kategori ?</h3>
+                                                                <p>Dengan menghapus kategori ini maka seluruh produk dengan kategori ini akan "-". Anda bisa pilih Edit jika ingin mengedit Kategori.</p>
+                                                                <a href="hapuskat.php?id_kat=<?= $row['id_kategori'];?>">
                                                                     <button>Ya</button>
                                                                 </a>
-                                                                <a href="kelolakat.php">
+                                                                <a>
                                                                     <button>Tidak</button>
                                                                 </a>
-                                                                <a href="updatekat.php?id_kat=<?= $id_kat;?>">
+                                                                <a>
                                                                     <button>Edit</button>
                                                                 </a>
+                                                                <i id="close" class="fas fa-times"></i>
                                                             </div>
-                                                            <a id="close" href="kelolakat.php"><i href="kelolakat.php" class="fas fa-times"></i></a>
                                                         </div>
-                                                    </div>
                                                 </td>
                                             </tr>
                                             <?php $no++; ?>

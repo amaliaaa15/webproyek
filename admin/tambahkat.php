@@ -60,8 +60,13 @@ if( isset($_POST["submit"]) ){
                                 </div>
                                 <div class="card-footer">
                                     <div class="col">
-                                        <button type="submit" name="submit" class="btn btn-primary btn-block"><i class="fa fa-plus" aria-hidden="true"></i> Tambah</button>
+                                        <button type="submit" name="submit" class="btn btn-primary btn-block" onclick="tambah()"><i class="fa fa-plus" aria-hidden="true"></i> Tambah</button>
                                     </div>
+                                    <br>
+                                    <div>
+                                        <label id="tambah"><br></label>
+                                    </div>
+
                                 </div>
                             </form>
                         </div>
@@ -77,5 +82,10 @@ if( isset($_POST["submit"]) ){
         <script src="assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
+        <script type="">
+            function tambah(){
+            document.getElementById("tambah").innerHTML = "Kategori Berhasil Ditambah!";
+        }
+        </script>
     </body>
 </html>

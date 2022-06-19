@@ -1,6 +1,6 @@
 <?php  
 require 'fungsi.php';
-$transaksi = query("SELECT * FROM transaksi");
+$transaksi = query("SELECT * FROM transaksi WHERE status_trans='Pesanan Dibatalkan'");
 ?>
 
 <!DOCTYPE html>
@@ -26,10 +26,10 @@ $transaksi = query("SELECT * FROM transaksi");
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Pesanan Diproses</h1>
+                        <h1 class="mt-4">Pesanan Dibatalkan</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item">Transaksi</li>
-                            <li class="breadcrumb-item active">Pesanan Diproses</li>
+                            <li class="breadcrumb-item active">Pesanan Dibatalkan</li>
                         </ol>
                         <div class="card">
                             <div class="card-body">
@@ -39,11 +39,10 @@ $transaksi = query("SELECT * FROM transaksi");
                                             <tr>
                                                 <th>No</th>
                                                 <th>ID Transaksi</th>
-                                                <th>Jenis Transaksi</th>
                                                 <th>Username</th>
-                                                <th>Tanggal Transaksi</th>
-                                                <th>Total Transaksi</th>
-                                                <th>Status</th>
+                                                <th>Tanggal</th>
+                                                <th>Status Transaksi</th>
+                                                <th>Total</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -52,24 +51,12 @@ $transaksi = query("SELECT * FROM transaksi");
                                         foreach( $transaksi as $row): ?>
                                             <tr>
                                                 <td><?= $no; ?></td>
-                                                <td><a href="detailtrans.php?id=<?= $row["id_transaksi"]; ?>">#<?= $row["id_transaksi"]; ?></a></td>
-                                                <td><?= $row["jenis_trans"]; ?></td>
-                                                <?php 
-
-                                                    $idpel = $row['id_pelanggan'];
-
-                                                    $pelanggan = "SELECT  * FROM pelanggan WHERE id_pelanggan='$idpel'";
-                                                    $result = mysqli_query($conn,$pelanggan);
-                                                    $baris = mysqli_fetch_array($result);
-                                                    $username = $baris['u_username'];
-                                                ?>
-                                                <td><a href="detailuser.php?username=<?php echo $username;?>">
-                                                    <?php echo $username; ?> 
-                                                </a></td>
+                                                <td><a href="buktitf.php?id=<?= $row["id_transaksi"]; ?>">#<?= $row["id_transaksi"]; ?></a></td>
+                                                <td class="breadcrumb-item active"><a href="detailuser.php?username=<?php echo $row['u_username'];?>">
+                                                <?php echo $row['u_username'];?></a></td>
                                                 <td><?= $row["tgl_transaksi"]; ?></td>
-                                                <td><?= $row["total_trans"]; ?></td>
                                                 <td><i><?= $row["status_trans"]; ?></i></td>
-                                                
+                                                <td>Rp. <?php echo number_format($row["total_trans"],2,",",".");?></td>                                             
                                             </tr>
                                             <?php $no++; ?>
                                             <?php endforeach; ?>

@@ -8,17 +8,17 @@
 
     require "fungsi.php";
 
-    $sql = "SELECT * FROM user WHERE u_username='".$_GET['username']."'";
+    $sql = "SELECT * FROM seller WHERE s_username='".$_GET['username']."'";
 
     $result = mysqli_query($conn,$sql);
 
     $row = mysqli_fetch_array($result);
-    $user = $row['u_username'];
-    $email = $row['u_email'];
-    $name = $row['u_nama'];
-    $nohp = $row['u_nohp'];
-    $alamat = $row['u_alamat'];
-    $image =$row['u_image'];
+    $user = $row['s_username'];
+    $email = $row['s_email'];
+    $name = $row['s_nama'];
+    $nohp = $row['s_nohp'];
+    $alamat = $row['s_alamat'];
+    $image =$row['s_image'];
 ?>
     <head>
         <meta charset="utf-8" />

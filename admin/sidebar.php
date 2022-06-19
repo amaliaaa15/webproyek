@@ -10,6 +10,10 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
                     Pengguna
                 </a>
+                <a class="nav-link" href="toko.php">
+                    <div class="sb-nav-link-icon"><i class="fas fa-store-alt"></i></div>
+                    Toko
+                </a>
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseTrans" aria-expanded="false" aria-controls="collapseTrans">
                         <div class="sb-nav-link-icon"><i class="fas fa-money-bill"></i></div>
                         Transaksi
@@ -17,8 +21,16 @@
                 </a>
                 <div class="collapse" id="collapseTrans" aria-labelledby="heading" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="pending.php"><i class="far fa-clock"></i>&nbsp;Pesanan Pending</a>
-                        <a class="nav-link" href="diproses.php"><i class="far fa-clock"></i>&nbsp;Pesanan Diproses</a>
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseTrans" aria-expanded="false" aria-controls="pagesCollapseTrans"><i class="fas fa-th"></i>&nbsp;Pesanan Pending
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="pagesCollapseTrans" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordionKat">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="pelunasan.php">Pelunasan</a>
+                                <a class="nav-link" href="fullpayment.php">Full Payment</a>
+                            </nav>
+                        </div>
+                        <a class="nav-link" href="diproses.php"><i class="fas fa-shipping-fast"></i>&nbsp;Pesanan Dikirim</a>
                         <a class="nav-link" href="selesai.php"><i class="fas fa-check"></i>&nbsp;Pesanan Selesai</a>
                         <a class="nav-link" href="dibatalkan.php"><i class="fas fa-times"></i>&nbsp;Pesanan Dibatalkan</a>
                     </nav>
@@ -49,6 +61,7 @@
                 </a>
                 <div class="collapse" id="collapseSetting" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
+                        <a class="nav-link" href="artikel.php"><i class="fas fa-book"></i>&nbsp;Artikel</a>
                         <a class="nav-link" href="metode.php"><i class="fas fa-university"></i>&nbsp;Bank</a>
                         <a class="nav-link" href="about.php">Tentang Kami</a>
                         <a class="nav-link" href="kontak.php">Kontak</a>

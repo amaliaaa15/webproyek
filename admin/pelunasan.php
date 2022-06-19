@@ -1,6 +1,6 @@
 <?php  
 require 'fungsi.php';
-$transaksi = query("SELECT * FROM transaksi WHERE status_trans='Menunggu Pengiriman' or status_trans='Pesanan Dikirim' ");
+$transaksi = query("SELECT * FROM transaksi WHERE status_trans='Menunggu Konfirmasi' AND jenispem='DP'");
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +14,7 @@ $transaksi = query("SELECT * FROM transaksi WHERE status_trans='Menunggu Pengiri
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Pesanan Diproses</title>
+        <title>Pesanan Pending</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
@@ -25,14 +25,16 @@ $transaksi = query("SELECT * FROM transaksi WHERE status_trans='Menunggu Pengiri
             <?php require "sidebar.php"; ?>
             <div id="layoutSidenav_content">
                 <main>
-                    <div class="container-fluid px-4">
-                        <h1 class="mt-4">Pesanan Diproses</h1>
+                    <div class="row g-2 px-4">
+                        <h1 class="mt-4">Pelunasan</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item">Transaksi</li>
-                            <li class="breadcrumb-item active">Pesanan Diproses</li>
+                            <li class="breadcrumb-item">Pesanan Pending</li>
+                            <li class="breadcrumb-item active">Pelunasan</li>
                         </ol>
-                        <div class="card">
-                            <div class="card-body">
+                        <div class="card col-6">
+                            <div class="card-body ">
+                                <h3>DP</h3>
                                 <div class="table-responsive">
                                     <table class="table table-bordered">
                                         <thead>
@@ -40,8 +42,6 @@ $transaksi = query("SELECT * FROM transaksi WHERE status_trans='Menunggu Pengiri
                                                 <th>No</th>
                                                 <th>ID Transaksi</th>
                                                 <th>Username</th>
-                                                <th>Tanggal</th>
-                                                <th>Status Transaksi</th>
                                                 <th>Total</th>
                                                 <th>Aksi</th>
                                             </tr>
@@ -52,12 +52,51 @@ $transaksi = query("SELECT * FROM transaksi WHERE status_trans='Menunggu Pengiri
                                         foreach( $transaksi as $row): ?>
                                             <tr>
                                                 <td><?= $no; ?></td>
-                                                <td><a href="buktitf.php?id=<?= $row["id_transaksi"]; ?>">#<?= $row["id_transaksi"]; ?></a></td>
+                                                <td><a href="buktitf.php?id=<?= $row["id_transaksi"]; ?>">#<?= $row["id_transaksi"]; ?></a><br>
+                                                <?= $row["tgl_transaksi"]; ?></td>
                                                 <td><a href="detailuser.php?username=<?= $row["u_username"]; ?>">
                                                 <?= $row["u_username"]; ?></a></td>
-                                                <td><?= $row["tgl_transaksi"]; ?></td>
-                                                <td><i><?= $row["status_trans"]; ?></i></td>
-                                                <td>Rp. <?php echo number_format($row["total_trans"],2,",",".");?></td>
+                                                <td>Rp. <?php echo number_format($row["tarif"],2,",",".");?></td>
+                                                <td>
+                                                    <a href="batalkan.php?id=<?= $row["id_transaksi"]; ?>"onclick= "return confirm('yakin?');"   class="btn btn-danger"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                                    <a href="confirm.php?id=<?= $row["id_transaksi"]; ?>"onclick= "return confirm('yakin?');"   class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i></a>
+                                                </td>
+                                                
+                                            </tr>
+                                            <?php $no++; ?>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card col-6">
+                            <div class="card-body ">
+                                <h3>Pelunasan DP</h3>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>ID Transaksi</th>
+                                                <th>Username</th>
+                                                <th>Total</th>
+                                                <th>Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php $no = 1; ?>
+                                        <?php
+                                        $transpel = query("SELECT * FROM transaksi WHERE status_trans='Menunggu Konfirmasi Pelunasan' AND jenispem='DP'");
+                                        foreach( $transpel as $row): ?>
+                                            <tr>
+                                                <td><?= $no; ?></td>
+                                                <td><a href="buktitf.php?id=<?= $row["id_transaksi"]; ?>">#<?= $row["id_transaksi"]; ?></a><br>
+                                                <?= $row["tgl_transaksi"]; ?></td>
+                                                <td><a href="detailuser.php?username=<?= $row["u_username"]; ?>">
+                                                <?= $row["u_username"]; ?></a></td>
+                                                <td>Rp. <?php echo number_format($row["tarif"],2,",",".");?></td>
                                                 <td>
                                                     <a href="batalkan.php?id=<?= $row["id_transaksi"]; ?>"onclick= "return confirm('yakin?');"   class="btn btn-danger"><i class="fa fa-times" aria-hidden="true"></i></a>
                                                     <a href="confirm.php?id=<?= $row["id_transaksi"]; ?>"onclick= "return confirm('yakin?');"   class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i></a>

@@ -50,7 +50,7 @@ $kategori = query("SELECT * FROM kategori WHERE k_flag=0");
                                         foreach( $kategori as $row): ?>
                                             <tr>
                                                 <td><?= $no; ?></td>
-                                                <td><?= $row["k_name"]; ?></td>
+                                                <td><?= $row["nama_kat"]; ?></td>
                                                 <td>
                                                 <?php
                                                 $idkat=$row["id_kategori"];

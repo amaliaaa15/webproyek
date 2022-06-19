@@ -1,10 +1,12 @@
+<?php  
+require 'fungsi.php';
+$artikel = query("SELECT * FROM artikel WHERE id_artikel='".$_GET['id']."'");
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html>   
     <?php
     session_start();
-    if(!isset($_SESSION['username'])){
-        header("location: login.php");
-    }
     ?>
     <head>
         <meta charset="utf-8" />
@@ -12,7 +14,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Dashboard</title>
+        <title>Artikel</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
@@ -24,23 +26,31 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Dashboard HaulHallyu</h1>
+                        <h1 class="mt-4">Kelola Artikel</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active"><i class="fas fa-home"></i> Home</li>
+                            <li class="breadcrumb-item">Pengaturan</li>
+                            <li class="breadcrumb-item active">Artikel</li>
                         </ol>
+                        <?php
+                            $sql = "SELECT * FROM artikel";
+
+                            $result = mysqli_query($conn,$sql);
+
+                            $row = mysqli_fetch_array($result);
+                                foreach( $artikel as $row):
+                            
+                        ?>
                         <div class="card">
                             <div class="card-header mb-2">
-                                <p class="card bg-primary text-white mb-4">
-                                    &nbsp; Welcome at Admin Dashboard!
-                                </p>
+                                <p><img src="assets/img/<?php echo $row['imageart'];?>" width="300"></p><br>
+                                <h2><?php echo $row['nama_art'];?></h2>
                                 <div class="card-body">
-                                <p class="">
-                                     Hallo! Selamat datang! <br> <br>
-                                     Anda berada di Area Admin untuk mengelola website HaulHallyu. Gunakan menu yang berada disamping unutk mengelola website. Hubungi pihak Admin jika ada beberapa yang kurang dimengerti.
-                                </p>
-                            </div>
+                                <p class="breadcrumb-item active"><?php echo $row['penulis'];?> <br> <?php echo $row['tanggal'];?></p>
+                                <p><?php echo $row['isiart'];?></p>
+                                <a href="editcontact.php" class="btn btn-warning"><i class="fa fa-pen" aria-hidden="true"></i> Edit</a><br>
                             </div>
                         </div>
+                        <?php endforeach; ?>
                     </div>
                 </main>
                 <?php require "footer.php"; ?>

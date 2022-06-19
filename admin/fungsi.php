@@ -40,7 +40,7 @@ if (!function_exists('tambah'))   {
 
 	  	$kategori = htmlspecialchars($data["kategori"]);
 
-	    $sql = "INSERT INTO kategori (k_name, flag) VALUES ('" . $kategori . "', 1)";
+	    $sql = "INSERT INTO kategori (nama_kat, k_flag) VALUES ('" . $kategori . "', 1)";
 
 	    mysqli_query($conn, $sql);
 
@@ -52,7 +52,7 @@ if (!function_exists('hapus'))   {
 	function hapus($id_kat){
 		global $conn;
 
-		mysqli_query($conn, "UPDATE kategori SET flag=0 WHERE id_kategori = $id_kat");
+		mysqli_query($conn, "UPDATE kategori SET k_flag=0 WHERE id_kategori = $id_kat");
 		return mysqli_affected_rows($conn);
 	}
 }
@@ -63,7 +63,7 @@ if (!function_exists('edit'))   {
 		$id_kat= $data["id_kat"];
 	  	$kategori = htmlspecialchars($data["kategori"]);
 
-	    $sql = "UPDATE kategori SET k_name= '$kategori' WHERE id_kategori= $id_kat";
+	    $sql = "UPDATE kategori SET nama_kat= '$kategori' WHERE id_kategori= $id_kat";
 
 	    mysqli_query($conn, $sql);
 
@@ -213,7 +213,16 @@ if (!function_exists('pulihkan'))   {
 	function pulihkan($id_kat){
 		global $conn;
 
-		mysqli_query($conn, "UPDATE kategori SET flag=1 WHERE id_kategori = $id_kat");
+		mysqli_query($conn, "UPDATE kategori SET k_flag=1 WHERE id_kategori = $id_kat");
+		return mysqli_affected_rows($conn);
+	}
+}
+
+if (!function_exists('hapusart'))   {
+	function hapusart($idart){
+		global $conn;
+
+		mysqli_query($conn, "DELETE FROM artikel WHERE id_artikel = $idart");
 		return mysqli_affected_rows($conn);
 	}
 }
